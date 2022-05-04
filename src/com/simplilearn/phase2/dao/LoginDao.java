@@ -12,7 +12,7 @@ public class LoginDao {
 
 	public boolean loginCheck(Login login) {
 
-		boolean login_flag = true;
+		boolean login_flag = false;
 		
 		String username = login.getUsername();
 		String password = login.getPassword();

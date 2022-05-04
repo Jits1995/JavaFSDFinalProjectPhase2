@@ -1,26 +1,29 @@
 package com.simplilearn.phase2.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.simplilearn.phase2.bean.Subject;
-import com.simplilearn.phase2.dao.SubjectDao;
+import com.simplilearn.phase2.bean.ClassSubject;
+import com.simplilearn.phase2.dao.ClassSubjectDao;
 
 /**
- * Servlet implementation class addSubjectServlet
+ * Servlet implementation class AssignSubjectToClass
  */
-@WebServlet("/add-subject")
-public class AddSubjectServlet extends HttpServlet {
+@WebServlet("/assign-SubjectToClass")
+public class AssignSubjectToClass extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddSubjectServlet() {
+    public AssignSubjectToClass() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,31 +41,41 @@ public class AddSubjectServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String subjectName = request.getParameter("SubjectName");
-		int queryResult = 0;
+		String class_id = request.getParameter("class");
+		String subject_id[] = request.getParameterValues("subject");
+		
+		boolean queryResult = false;
 		String ErrorMessage = null;
 		
-		if(subjectName == null || subjectName == ""){
-			ErrorMessage = "Please enter class name.";
+		if(class_id == null || subject_id == null){
+			ErrorMessage = "Please select class name and subject name to link.";
 			request.setAttribute("ErrorMessage", ErrorMessage);	
 		}else{
 			
-			SubjectDao subDao = new SubjectDao();
-			Subject sub = new Subject();
-			sub.setSubjectName(subjectName);
-			queryResult = subDao.addSubject(sub);
+			List<ClassSubject> cls_sub = new ArrayList<ClassSubject>();
+			
+			for(String sub : subject_id){
+				
+				ClassSubject cs = new ClassSubject();
+				cs.setClass_id(Integer.parseInt(class_id));
+				cs.setSubject_id(Integer.parseInt(sub));
+				
+				cls_sub.add(cs);
+			}
+			
+			ClassSubjectDao csd = new ClassSubjectDao();
+			queryResult = csd.linkClassToSubject(cls_sub);
 		}
 		
-		if(queryResult > 0){
-			String SuccessMessage = subjectName + " added successfully.";
+		if(queryResult){
+			String SuccessMessage = "Subject linked to class successfully.";
 			request.setAttribute("SuccessMessage", SuccessMessage);
 		}else if(ErrorMessage == null){
 			ErrorMessage = "Something went wrong.";
 			request.setAttribute("ErrorMessage", ErrorMessage);	
 		}
 		
-		request.getRequestDispatcher("addSubject.jsp").forward(request, response);
-		
+		request.getRequestDispatcher("assignSubjectToClasses.jsp").forward(request, response);
 	}
 
 }

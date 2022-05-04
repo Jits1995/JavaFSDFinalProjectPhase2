@@ -16,13 +16,14 @@
 <body>
 	<table border="1" bgcolor="blue" width="100%">
 		<tr>
-			<td align="center"><font color="white"><h1>Learner Academy</h1></font></td>
+			<td align="center"><h1><font color="white">Learner Academy</font></h1></td>
 		</tr>
 	</table>
 
 	<table border="1" width="100%" >
 		<tr align="center">
 			<td><a href="home.jsp">Home</a></td>
+			<td><a href="classReport.jsp">Class Report</a></td>
 			<td><a href="addStudent.jsp">Add Student</a></td>
 			<td><a href="addSubject.jsp">Add Subject</a></td>
 			<td><a href="addTeacher.jsp">Add Teacher</a></td>
@@ -33,7 +34,7 @@
 			<td><a href="get-Teacher">View Teacher</a></td>
 			<td><a href="get-Class">View Class</a></td>
 			<td><a href="assignSubjectToClasses.jsp">Assign Subject to Class</a></td>
-
+			<td><a href="assignTeacherToClassForSubject.jsp">Assign Teacher to Class</a></td>
 		</tr>
 
 	</table>
