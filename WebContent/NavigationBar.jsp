@@ -23,7 +23,7 @@
 	<table border="1" width="100%" >
 		<tr align="center">
 			<td><a href="home.jsp">Home</a></td>
-			<td><a href="classReport.jsp">Class Report</a></td>
+			<td><a href="class-Report">Class Report</a></td>
 			<td><a href="addStudent.jsp">Add Student</a></td>
 			<td><a href="addSubject.jsp">Add Subject</a></td>
 			<td><a href="addTeacher.jsp">Add Teacher</a></td>

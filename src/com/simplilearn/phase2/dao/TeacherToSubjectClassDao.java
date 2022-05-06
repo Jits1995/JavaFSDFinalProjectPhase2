@@ -15,7 +15,7 @@ public class TeacherToSubjectClassDao {
 
 		try {
 
-			String query = "update class_subject_teacher_link SET teacher_id = ? where class_subject_id = ?";
+			String query = "UPDATE subject SET teacher_id = ? WHERE subject_id = ?;";
 
 			// create the mysql insert preparedstatement
 			Connection con = DBConnector.getConnection();
@@ -23,7 +23,7 @@ public class TeacherToSubjectClassDao {
 
 			// execute the preparedstatement
 			preparedStmt.setInt(1, tcs.getTeacher_id());
-			preparedStmt.setInt(2, tcs.getClass_subject_id());
+			preparedStmt.setInt(2, tcs.getSubject_id());
 			queryResult = preparedStmt.executeUpdate();
 			
 			preparedStmt.close();

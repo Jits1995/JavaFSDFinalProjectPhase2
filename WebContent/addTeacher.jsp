@@ -58,7 +58,7 @@
 				</tr>
 				<tr>
 					<td>Address* :</td>
-					<td><textarea type="text" name="Address"></textarea></td>
+					<td><textarea name="Address"></textarea></td>
 				</tr>
 				<tr>
 					<td>Mobile No* :</td>

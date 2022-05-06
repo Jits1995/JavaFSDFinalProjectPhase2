@@ -16,7 +16,7 @@ public class ClassSubjectDao {
 
 		try {
 
-			String query = "insert into class_subject_teacher_link (class_id, subject_id) values (?,?)";
+			String query = "UPDATE subject SET class_id = ? WHERE subject_id = ?";
 
 			// create the mysql insert preparedstatement
 			Connection con = DBConnector.getConnection();

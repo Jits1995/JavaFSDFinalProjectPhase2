@@ -77,13 +77,13 @@
 								Statement stmt1 = con1.createStatement();
 
 								//executing query
-								String sql1 = "select cs.class_subject_id, c.class_name, s.subject_name from class_subject_teacher_link cs INNER JOIN classes c ON c.class_id = cs.class_id	INNER JOIN subject s ON s.subject_id = cs.subject_id";
+								String sql1 = "SELECT s.subject_id, c.class_name, s.subject_name FROM subject s INNER JOIN classes c ON s.class_id = c.class_id";
 								ResultSet rs1 = stmt1.executeQuery(sql1);
 
 								//getting classes name
 								while (rs1.next()) {
 									out.println(
-											"<option value='" + rs1.getInt("class_subject_id") + "'>" + rs1.getString("class_name") + " : " + rs1.getString("subject_name") + "</option>");
+											"<option value='" + rs1.getInt("subject_id") + "'>" + rs1.getString("class_name") + " : " + rs1.getString("subject_name") + "</option>");
 								}
 								stmt1.close();
 								con1.close();

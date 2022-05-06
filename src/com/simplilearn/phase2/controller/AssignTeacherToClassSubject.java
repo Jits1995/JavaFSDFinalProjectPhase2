@@ -49,14 +49,14 @@ public class AssignTeacherToClassSubject extends HttpServlet {
 		String SuccessMessage = null;
 		boolean queryResult = false;
 
-		if (teacher == "" || classSubject == "") {
+		if (teacher == null || classSubject == null) {
 			ErrorMessage = "Please select teacher and class subject to link.";
 			request.setAttribute("ErrorMessage", ErrorMessage);
 		} else {
 			
 			TeacherClassSubject tcs = new TeacherClassSubject();
 			tcs.setTeacher_id(Integer.parseInt(teacher));
-			tcs.setClass_subject_id(Integer.parseInt(classSubject));
+			tcs.setSubject_id(Integer.parseInt(classSubject));
 			
 			TeacherToSubjectClassDao tcsd = new TeacherToSubjectClassDao();
 			queryResult = tcsd.linkTeacherToClassSubject(tcs);
